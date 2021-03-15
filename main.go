@@ -96,7 +96,7 @@ func main() {
 	}
 	defer db.Close()
 
-	dbWordMap, err := getReviewWords(db)
+	dbWordMap, err := getContentsWords(db)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -142,7 +142,7 @@ func gormConnect() (*gorm.DB, error) {
 	return db, nil
 }
 
-func getReviewWords(db *gorm.DB) (map[string]int, error) {
+func getContentsWords(db *gorm.DB) (map[string]int, error) {
 
 	utc, _ := time.LoadLocation("UTC")
 	lastWeek := time.Now().In(utc).AddDate(0, 0, -7).Truncate(24 * time.Hour)
